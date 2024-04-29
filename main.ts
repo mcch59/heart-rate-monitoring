@@ -7,7 +7,9 @@ let pulse_out = 0
 basic.showString("\"Puls__\"")
 basic.forever(function () {
     basic.showNumber(pulse_out)
+    basic.pause(100)
     basic.showIcon(IconNames.Heart)
+    basic.pause(100)
 })
 basic.forever(function () {
     PulseDet = pins.analogReadPin(AnalogPin.P2)
@@ -21,7 +23,7 @@ basic.forever(function () {
         delta_t = time2 - time1
         time1 = time2
         counter = 1
-        pulse_out = (60000 - 60000 % delta_t) / delta_t
+        pulse_out = Math.round(60000 / delta_t)
     } else {
         if (PulseDet <= 600 && counter == 1) {
             counter = 0
